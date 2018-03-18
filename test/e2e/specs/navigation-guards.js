@@ -20,6 +20,7 @@ module.exports = {
 
       .click('li:nth-child(2) a')
       .acceptAlert()
+      .waitFor(100)
       .assert.urlEquals('http://localhost:8080/navigation-guards/foo')
       .assert.containsText('.view', 'foo')
 
