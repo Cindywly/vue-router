@@ -66,12 +66,138 @@ jobs:
           at: ~/project
       - run: npm run test:e2e
 
-  test-e2e/basic:
+  test-e2e--scroll-behavior:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/project
+      - run: npm run test:e2e -- --no-build --test scroll-behavior
+
+  test-e2e--transition:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/project
+      - run: npm run test:e2e -- --no-build --test transition
+
+  test-e2e--route-props:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/project
+      - run: npm run test:e2e -- --no-build --test route-props
+
+  test-e2e--route-matching:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/project
+      - run: npm run test:e2e -- --no-build --test route-matching
+
+  test-e2e--route-alias:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/project
+      - run: npm run test:e2e -- --no-build --test route-alias
+
+  test-e2e--redirect:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/project
+      - run: npm run test:e2e -- --no-build --test redirect
+
+  test-e2e--nested-routes:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/project
+      - run: npm run test:e2e -- --no-build --test nested-routes
+
+  test-e2e--nested-router:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/project
+      - run: npm run test:e2e -- --no-build --test nested-router
+
+  test-e2e--navigation-guards:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/project
+      - run: npm run test:e2e -- --no-build --test navigation-guards
+
+  test-e2e--named-views:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/project
+      - run: npm run test:e2e -- --no-build --test named-views
+
+  test-e2e--named-routes:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/project
+      - run: npm run test:e2e -- --no-build --test named-routes
+
+  test-e2e--lazy-loading:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/project
+      - run: npm run test:e2e -- --no-build --test lazy-loading
+
+  test-e2e--hash-scroll-behavior:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/project
+      - run: npm run test:e2e -- --no-build --test hash-scroll-behavior
+
+  test-e2e--hash-mode:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/project
+      - run: npm run test:e2e -- --no-build --test hash-mode
+
+  test-e2e--discrete-components:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/project
+      - run: npm run test:e2e -- --no-build --test discrete-components
+
+  test-e2e--data-fetching:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/project
+      - run: npm run test:e2e -- --no-build --test data-fetching
+
+  test-e2e--basic:
     <<: *defaults
     steps:
       - attach_workspace:
           at: ~/project
       - run: npm run test:e2e -- --no-build --test basic
+
+  test-e2e--auth-flow:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/project
+      - run: npm run test:e2e -- --no-build --test auth-flow
+
+  test-e2e--active-links:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/project
+      - run: npm run test:e2e -- --no-build --test active-links
 
 workflows:
   version: 2
@@ -87,6 +213,63 @@ workflows:
       - build-e2e:
           requires:
             - install
-      - test-e2e/basic:
+      - test-e2e--active-links:
+          requires:
+            - build-e2e
+      - test-e2e--base:
+          requires:
+            - build-e2e
+      - test-e2e--auth-flow:
+          requires:
+            - build-e2e
+      - test-e2e--basic:
+          requires:
+            - build-e2e
+      - test-e2e--data-fetching:
+          requires:
+            - build-e2e
+      - test-e2e--discrete-components:
+          requires:
+            - build-e2e
+      - test-e2e--hash-mode:
+          requires:
+            - build-e2e
+      - test-e2e--hash-scroll-behavior:
+          requires:
+            - build-e2e
+      - test-e2e--lazy-loading:
+          requires:
+            - build-e2e
+      - test-e2e--named-routes:
+          requires:
+            - build-e2e
+      - test-e2e--named-views:
+          requires:
+            - build-e2e
+      - test-e2e--navigation-guards:
+          requires:
+            - build-e2e
+      - test-e2e--nested-router:
+          requires:
+            - build-e2e
+      - test-e2e--nested-routes:
+          requires:
+            - build-e2e
+      - test-e2e--redirect:
+          requires:
+            - build-e2e
+      - test-e2e--route-alias:
+          requires:
+            - build-e2e
+      - test-e2e--route-matching:
+          requires:
+            - build-e2e
+      - test-e2e--route-props:
+          requires:
+            - build-e2e
+      - test-e2e--scroll-behavior:
+          requires:
+            - build-e2e
+      - test-e2e--transition:
           requires:
             - build-e2e
