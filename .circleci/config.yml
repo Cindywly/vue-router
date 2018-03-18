@@ -30,7 +30,7 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/project
-      - npm run test:build:e2e
+      - run: npm run test:build:e2e
       - persist_to_workspace:
           root: ~/project/vue-router/examples
           paths:
