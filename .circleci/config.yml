@@ -74,7 +74,7 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/project
-      - run: npm run test:e2e -- --no-build -t navigation-guards -t auth-flow -t basic -t data-fetching -t hash-mode
+      - run: npm run test:e2e -- --no-build -t auth-flow -t basic -t data-fetching -t hash-mode -t navigation-guards
 
   test-e2e--part-2:
     <<: *defaults
