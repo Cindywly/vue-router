@@ -222,54 +222,54 @@ workflows:
       - test-e2e--auth-flow:
           requires:
             - build-e2e
-      - test-e2e--basic:
-          requires:
-            - build-e2e
-      - test-e2e--data-fetching:
-          requires:
-            - build-e2e
-      - test-e2e--discrete-components:
-          requires:
-            - build-e2e
-      - test-e2e--hash-mode:
-          requires:
-            - build-e2e
-      - test-e2e--hash-scroll-behavior:
-          requires:
-            - build-e2e
-      - test-e2e--lazy-loading:
-          requires:
-            - build-e2e
-      - test-e2e--named-routes:
-          requires:
-            - build-e2e
-      - test-e2e--named-views:
-          requires:
-            - build-e2e
-      - test-e2e--navigation-guards:
-          requires:
-            - build-e2e
-      - test-e2e--nested-router:
-          requires:
-            - build-e2e
-      - test-e2e--nested-routes:
-          requires:
-            - build-e2e
-      - test-e2e--redirect:
-          requires:
-            - build-e2e
-      - test-e2e--route-alias:
-          requires:
-            - build-e2e
-      - test-e2e--route-matching:
-          requires:
-            - build-e2e
-      - test-e2e--route-props:
-          requires:
-            - build-e2e
-      - test-e2e--scroll-behavior:
-          requires:
-            - build-e2e
-      - test-e2e--transition:
-          requires:
-            - build-e2e
+      # - test-e2e--basic:
+      #     requires:
+      #       - build-e2e
+      # - test-e2e--data-fetching:
+      #     requires:
+      #       - build-e2e
+      # - test-e2e--discrete-components:
+      #     requires:
+      #       - build-e2e
+      # - test-e2e--hash-mode:
+      #     requires:
+      #       - build-e2e
+      # - test-e2e--hash-scroll-behavior:
+      #     requires:
+      #       - build-e2e
+      # - test-e2e--lazy-loading:
+      #     requires:
+      #       - build-e2e
+      # - test-e2e--named-routes:
+      #     requires:
+      #       - build-e2e
+      # - test-e2e--named-views:
+      #     requires:
+      #       - build-e2e
+      # - test-e2e--navigation-guards:
+      #     requires:
+      #       - build-e2e
+      # - test-e2e--nested-router:
+      #     requires:
+      #       - build-e2e
+      # - test-e2e--nested-routes:
+      #     requires:
+      #       - build-e2e
+      # - test-e2e--redirect:
+      #     requires:
+      #       - build-e2e
+      # - test-e2e--route-alias:
+      #     requires:
+      #       - build-e2e
+      # - test-e2e--route-matching:
+      #     requires:
+      #       - build-e2e
+      # - test-e2e--route-props:
+      #     requires:
+      #       - build-e2e
+      # - test-e2e--scroll-behavior:
+      #     requires:
+      #       - build-e2e
+      # - test-e2e--transition:
+      #     requires:
+      #       - build-e2e
