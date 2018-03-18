@@ -32,9 +32,9 @@ jobs:
           at: ~/project
       - run: npm run test:build:e2e
       - persist_to_workspace:
-          root: ~/project/vue-router/examples
+          root: ~/project
           paths:
-            - __build__
+            - vue-router/examples/__build__
 
   lint-flow-types:
     <<: *defaults
@@ -214,9 +214,6 @@ workflows:
           requires:
             - install
       - test-e2e--active-links:
-          requires:
-            - build-e2e
-      - test-e2e--base:
           requires:
             - build-e2e
       - test-e2e--auth-flow:
