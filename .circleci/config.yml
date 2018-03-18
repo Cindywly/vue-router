@@ -74,7 +74,7 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/project
-      - run: npm run test:e2e -- --no-build --test active-links
+      - run: npm run test:e2e -- --no-build --test navigation-guards
       - run: npm run test:e2e -- --no-build --test auth-flow
       - run: npm run test:e2e -- --no-build --test basic
       - run: npm run test:e2e -- --no-build --test data-fetching
@@ -89,7 +89,7 @@ jobs:
       - run: npm run test:e2e -- --no-build --test lazy-loading
       - run: npm run test:e2e -- --no-build --test named-routes
       - run: npm run test:e2e -- --no-build --test named-views
-      - run: npm run test:e2e -- --no-build --test navigation-guards
+      - run: npm run test:e2e -- --no-build --test active-links
 
   test-e2e--part-3:
     <<: *defaults
