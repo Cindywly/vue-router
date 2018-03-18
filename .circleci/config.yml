@@ -74,42 +74,28 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/project
-      - run: npm run test:e2e -- --no-build --test navigation-guards
-      - run: npm run test:e2e -- --no-build --test auth-flow
-      - run: npm run test:e2e -- --no-build --test basic
-      - run: npm run test:e2e -- --no-build --test data-fetching
-      - run: npm run test:e2e -- --no-build --test hash-mode
+      - run: npm run test:e2e -- --no-build -t navigation-guards -t auth-flow -t basic -t data-fetching -t hash-mode
 
   test-e2e--part-2:
     <<: *defaults
     steps:
       - attach_workspace:
           at: ~/project
-      - run: npm run test:e2e -- --no-build --test hash-scroll-behavior
-      - run: npm run test:e2e -- --no-build --test lazy-loading
-      - run: npm run test:e2e -- --no-build --test named-routes
-      - run: npm run test:e2e -- --no-build --test named-views
-      - run: npm run test:e2e -- --no-build --test active-links
+      - run: npm run test:e2e -- --no-build -t hash-scroll-behavior -t lazy-loading -t named-routes -t named-views -t active-links
 
   test-e2e--part-3:
     <<: *defaults
     steps:
       - attach_workspace:
           at: ~/project
-      - run: npm run test:e2e -- --no-build --test nested-router
-      - run: npm run test:e2e -- --no-build --test nested-routes
-      - run: npm run test:e2e -- --no-build --test redirect
-      - run: npm run test:e2e -- --no-build --test route-alias
+      - run: npm run test:e2e -- --no-build -t nested-router -t nested-routes -t redirect -t route-alias
 
   test-e2e--part-4:
     <<: *defaults
     steps:
       - attach_workspace:
           at: ~/project
-      - run: npm run test:e2e -- --no-build --test route-matching
-      - run: npm run test:e2e -- --no-build --test route-props
-      - run: npm run test:e2e -- --no-build --test transitions
-      - run: npm run test:e2e -- --no-build --test scroll-behavior
+      - run: npm run test:e2e -- --no-build -t route-matching -t route-props -t transitions -t scroll-behavior
 
 workflows:
   version: 2

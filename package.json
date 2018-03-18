@@ -77,7 +77,8 @@
     "vue-loader": "^13.7.1",
     "vue-template-compiler": "^2.5.13",
     "webpack": "^3.11.0",
-    "webpack-dev-middleware": "^1.12.2"
+    "webpack-dev-middleware": "^1.12.2",
+    "yargs": "^11.0.0"
   },
   "bugs": {
     "url": "https://github.com/vuejs/vue-router/issues"

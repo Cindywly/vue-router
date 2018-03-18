@@ -1,25 +1,43 @@
-var spawn = require('cross-spawn')
-var args = process.argv.slice(2)
+const spawn = require('cross-spawn')
+let args = []
+const yargs = require('yargs')
 
-var server = args.indexOf('--dev') > -1
+const options = yargs
+  .usage('Usage: $0 <file> [options]')
+  .example('$0 src/index.js', 'bundles cjs, es, umd, and minified umd versions of your lib')
+  .option('test', {
+    describe: 'tests specs name to run',
+    alias: ['t', 'tests'],
+    array: true
+  })
+  .option('dev', {
+    alias: 'd',
+    describe: 'Run without development server'
+  })
+  .option('config', {
+    alias: 'c',
+    describe: 'Nightwatch config',
+    default: 'test/e2e/nightwatch.config.js'
+  })
+  .option('env', {
+    alias: 'e',
+    default: 'phantomjs',
+    describe: 'Run tests in a different environment'
+  })
+  .help('h')
+  .alias('h', 'help')
+  .argv
+
+const server = options.dev
   ? null
   : require('../../examples/server')
 
-if (args.indexOf('--config') === -1) {
-  args = args.concat(['--config', 'test/e2e/nightwatch.config.js'])
-}
-if (args.indexOf('--env') === -1) {
-  args = args.concat(['--env', 'phantomjs'])
-}
-var i = args.indexOf('--test')
-if (i > -1) {
-  args[i + 1] = 'test/e2e/specs/' + args[i + 1].replace(/\.js$/, '') + '.js'
-}
-if (args.indexOf('phantomjs') > -1) {
-  process.env.PHANTOMJS = true
-}
+args.push('--config', options.config)
+args.push('--env', options.env)
 
-var runner = spawn('./node_modules/.bin/nightwatch', args, {
+args.push(...options.tests.map(t => `test/e2e/specs/${t.replace(/\.js$/, '')}.js`))
+
+const runner = spawn('./node_modules/.bin/nightwatch', args, {
   stdio: 'inherit'
 })
 
