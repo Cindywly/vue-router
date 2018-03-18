@@ -1,5 +1,5 @@
 const spawn = require('cross-spawn')
-let args = []
+const args = []
 const yargs = require('yargs')
 
 const options = yargs
@@ -21,7 +21,7 @@ const options = yargs
   })
   .option('env', {
     alias: 'e',
-    default: 'phantomjs',
+    default: 'chrome',
     describe: 'Run tests in a different environment'
   })
   .help('h')
@@ -35,7 +35,9 @@ const server = options.dev
 args.push('--config', options.config)
 args.push('--env', options.env)
 
-args.push(...options.tests.map(t => `test/e2e/specs/${t.replace(/\.js$/, '')}.js`))
+if (options.tests && options.test.length) {
+  args.push(...options.tests.map(t => `test/e2e/specs/${t.replace(/\.js$/, '')}.js`))
+}
 
 const runner = spawn('./node_modules/.bin/nightwatch', args, {
   stdio: 'inherit'
