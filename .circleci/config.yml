@@ -12,18 +12,29 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - v1-vue-{{ .Branch }}-{{ checksum "package-lock.json" }}
-            - v1-vue-{{ .Branch }}-
-            - v1-vue-
+            - v1-vue-router-{{ .Branch }}-{{ checksum "package-lock.json" }}
+            - v1-vue-router-{{ .Branch }}-
+            - v1-vue-router-
       - run: npm install
       - save_cache:
-          key: v1-vue-{{ .Branch }}-{{ checksum "package-lock.json" }}
+          key: v1-vue-router-{{ .Branch }}-{{ checksum "package-lock.json" }}
           paths:
             - node_modules/
       - persist_to_workspace:
           root: ~/project
           paths:
             - vue-router
+
+  build-e2e:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/project
+      - npm run test:build:e2e
+      - persist_to_workspace:
+          root: ~/project/vue-router/examples
+          paths:
+            - __build__
 
   lint-flow-types:
     <<: *defaults
@@ -55,6 +66,13 @@ jobs:
           at: ~/project
       - run: npm run test:e2e
 
+  test-e2e/basic:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/project
+      - run: npm run test:e2e -- --no-build --test basic
+
 workflows:
   version: 2
   install-and-parallel-test:
@@ -66,6 +84,9 @@ workflows:
       - lint-flow-types:
           requires:
             - install
-      - test-e2e:
+      - build-e2e:
           requires:
             - install
+      - test-e2e/basic:
+          requires:
+            - build-e2e

@@ -30,6 +30,7 @@
     "test": "npm run lint && npm run flow && npm run test:unit && npm run test:e2e && npm run test:types",
     "flow": "flow check",
     "test:unit": "jasmine JASMINE_CONFIG_PATH=test/unit/jasmine.json",
+    "test:build:e2e": "webpack --config examples/webpack.config.js",
     "test:e2e": "node test/e2e/runner.js",
     "test:types": "tsc -p types/test",
     "docs": "cd docs && gitbook install && gitbook serve",

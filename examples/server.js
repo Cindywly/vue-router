@@ -3,22 +3,25 @@ const rewrite = require('express-urlrewrite')
 const webpack = require('webpack')
 const webpackDevMiddleware = require('webpack-dev-middleware')
 const WebpackConfig = require('./webpack.config')
+const args = process.argv.slice(2)
 
 const app = express()
 
-app.use(webpackDevMiddleware(webpack(WebpackConfig), {
-  publicPath: '/__build__/',
-  stats: {
-    colors: true,
-    chunks: false
-  }
-}))
+if (args.indexOf('--no-build') < 0) {
+  app.use(webpackDevMiddleware(webpack(WebpackConfig), {
+    publicPath: '/__build__/',
+    stats: {
+      colors: true,
+      chunks: false
+    }
+  }))
+}
 
 const fs = require('fs')
 const path = require('path')
 
 fs.readdirSync(__dirname).forEach(file => {
-  if (fs.statSync(path.join(__dirname, file)).isDirectory()) {
+  if (file !== '__build__' && fs.statSync(path.join(__dirname, file)).isDirectory()) {
     app.use(rewrite('/' + file + '/*', '/' + file + '/index.html'))
   }
 })
